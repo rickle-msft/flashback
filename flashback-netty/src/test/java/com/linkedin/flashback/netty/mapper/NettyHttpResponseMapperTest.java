@@ -93,4 +93,19 @@ public class NettyHttpResponseMapperTest {
     Assert.assertEquals(headrValues.size(), 1);
     Assert.assertTrue(headrValues.contains("YSxiLGM=, ZCxlLGY="));
   }
+
+  @Test
+  public void testDuplicateHeader() throws IOException {
+    Multimap<String, String> headers = LinkedHashMultimap.create();
+    headers.put("key1", "value1");
+    headers.put("key1", "value2");
+    int status = 200;
+    RecordedHttpResponse recordedHttpResponse = new RecordedHttpResponse(status, headers, null);
+    FullHttpResponse fullHttpResponse = NettyHttpResponseMapper.from(recordedHttpResponse);
+    Assert.assertEquals(fullHttpResponse.getStatus().code(), status);
+    List<String> headrValues = fullHttpResponse.headers().getAll("key1");
+    Assert.assertEquals(headrValues.size(), 2);
+    Assert.assertTrue(headrValues.contains("value1"));
+    Assert.assertTrue(headrValues.contains("value2"));
+  }
 }
