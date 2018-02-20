@@ -8,6 +8,9 @@ package com.linkedin.flashback.serialization;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
+import com.google.common.collect.LinkedHashMultimap;
+import com.google.common.collect.LinkedListMultimap;
+import com.google.common.collect.Multimap;
 import com.linkedin.flashback.scene.Scene;
 import com.linkedin.flashback.serializable.RecordedByteHttpBody;
 import com.linkedin.flashback.serializable.RecordedEncodedHttpBody;
@@ -90,7 +93,7 @@ public class SceneDeserializer {
 
     //Create optional fields
     _jsonParser.nextToken();  // Move to next token
-    Map<String, String> headers = createHeaders();
+    Multimap<String, String> headers = createHeaders();
     RecordedHttpBody recordedHttpBody = createHttpBody();
     RecordedHttpRequest recordedHttpRequest = new RecordedHttpRequest(httpMethod, uri, headers, recordedHttpBody);
     //Check if reach to the end of object for http request
@@ -132,7 +135,7 @@ public class SceneDeserializer {
     int statusCode = createStatusCode();
 
     _jsonParser.nextToken();  // Move to next token
-    Map<String, String> headers = createHeaders();
+    Multimap<String, String> headers = createHeaders();
     RecordedHttpBody recordedHttpBody = createHttpBody();
     RecordedHttpResponse recordedHttpResponse = new RecordedHttpResponse(statusCode, headers, recordedHttpBody);
 
@@ -153,14 +156,14 @@ public class SceneDeserializer {
     return _jsonParser.getValueAsInt();
   }
 
-  private Map<String, String> createHeaders()
+  private Multimap<String, String> createHeaders()
       throws IOException {
     if (!isValidOptionalField(SceneSerializationConstant.SCENE_TAG_HTTPHEADERS)) {
       return null;
     }
     skipStartObject();  // HTTPHEADERS
 
-    Map<String, String> headers = new HashMap<>();
+    Multimap<String, String> headers = LinkedHashMultimap.create();
     while (_jsonParser.nextToken() != JsonToken.END_OBJECT) {   //FIELD_NAME
       String key = _jsonParser.getCurrentName();
       _jsonParser.nextToken();   // VALUE_STRING

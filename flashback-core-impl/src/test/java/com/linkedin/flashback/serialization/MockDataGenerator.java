@@ -5,6 +5,8 @@
 
 package com.linkedin.flashback.serialization;
 
+import com.google.common.collect.LinkedHashMultimap;
+import com.google.common.collect.Multimap;
 import com.linkedin.flashback.scene.Scene;
 import com.linkedin.flashback.serializable.RecordedByteHttpBody;
 import com.linkedin.flashback.serializable.RecordedHttpExchange;
@@ -29,10 +31,10 @@ public class MockDataGenerator {
   static Scene getMockScene()
       throws URISyntaxException {
 
-    Map<String, String> requestHeaders1 = new HashMap<>();
+    Multimap<String, String> requestHeaders1 = LinkedHashMultimap.create();
     requestHeaders1.put("request-header1", "value1");
     requestHeaders1.put("request-header2", "value2, value3, value4");
-    Map<String, String> responseHeaders1 = new HashMap<>();
+    Multimap<String, String> responseHeaders1 = LinkedHashMultimap.create();
     responseHeaders1.put("response-header1", "value1");
     responseHeaders1.put("response-header2", "value2, value3, value4");
 
@@ -44,10 +46,10 @@ public class MockDataGenerator {
     RecordedHttpExchange recordedHttpExchange1 =
         new RecordedHttpExchange(recordedHttpRequest1, recordedHttpResponse1, new Date("2 Oct 2015 21:04:49 GMT"));
 
-    Map<String, String> requestHeaders2 = new HashMap<>();
+    Multimap<String, String> requestHeaders2 = LinkedHashMultimap.create();
     requestHeaders2.put("request-header11", "value11");
     requestHeaders2.put("request-header12", "value12, value13, value14");
-    Map<String, String> responseHeaders2 = new HashMap<>();
+    Multimap<String, String> responseHeaders2 = LinkedHashMultimap.create();
     responseHeaders2.put("response-header11", "value11");
     responseHeaders2.put("response-header12", "value21, value31, value41");
 
@@ -127,10 +129,10 @@ public class MockDataGenerator {
 
   static Scene getMockSceneWithoutBody()
       throws URISyntaxException {
-    Map<String, String> requestHeaders1 = new HashMap<>();
+    Multimap<String, String> requestHeaders1 = LinkedHashMultimap.create();
     requestHeaders1.put("request-header1", "value1");
     requestHeaders1.put("request-header2", "value2, value3, value4");
-    Map<String, String> responseHeaders1 = new HashMap<>();
+    Multimap<String, String> responseHeaders1 = LinkedHashMultimap.create();
     responseHeaders1.put("response-header1", "value1");
     responseHeaders1.put("response-header2", "value2, value3, value4");
 
@@ -140,10 +142,10 @@ public class MockDataGenerator {
     RecordedHttpExchange recordedHttpExchange1 =
         new RecordedHttpExchange(recordedHttpRequest1, recordedHttpResponse1, new Date("2 Oct 2015 21:04:49 GMT"));
 
-    Map<String, String> requestHeaders2 = new HashMap<>();
+    Multimap<String, String> requestHeaders2 = LinkedHashMultimap.create();
     requestHeaders2.put("request-header11", "value11");
     requestHeaders2.put("request-header12", "value12, value13, value14");
-    Map<String, String> responseHeaders2 = new HashMap<>();
+    Multimap<String, String> responseHeaders2 = LinkedHashMultimap.create();
     responseHeaders2.put("response-header11", "value11");
     responseHeaders2.put("response-header12", "value21, value31, value41");
 

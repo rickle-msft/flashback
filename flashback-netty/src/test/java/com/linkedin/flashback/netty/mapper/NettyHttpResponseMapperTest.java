@@ -5,6 +5,8 @@
 
 package com.linkedin.flashback.netty.mapper;
 
+import com.google.common.collect.LinkedHashMultimap;
+import com.google.common.collect.Multimap;
 import com.linkedin.flashback.serializable.RecordedHttpResponse;
 import com.linkedin.flashback.serializable.RecordedStringHttpBody;
 import io.netty.handler.codec.http.FullHttpResponse;
@@ -24,7 +26,7 @@ public class NettyHttpResponseMapperTest {
   @Test
   public void testFromWithoutBody()
       throws Exception {
-    Map<String, String> headers = new HashMap<>();
+    Multimap<String, String> headers = LinkedHashMultimap.create();
     headers.put("key1", "value1");
     headers.put("key2", "value2,value3,value4");
     int status = 200;
@@ -42,7 +44,7 @@ public class NettyHttpResponseMapperTest {
   @Test
   public void testFromWithBody()
       throws Exception {
-    Map<String, String> headers = new HashMap<>();
+    Multimap<String, String> headers = LinkedHashMultimap.create();
     headers.put("key1", "value1");
     headers.put("key2", "value2,value3,value4");
     int status = 200;
@@ -62,7 +64,7 @@ public class NettyHttpResponseMapperTest {
 
   @Test
   public void testCookieHeader() throws URISyntaxException, IOException {
-    Map<String, String> headers = new HashMap<>();
+    Multimap<String, String> headers = LinkedHashMultimap.create();
     headers.put("key1", "value1");
     headers.put("Set-Cookie", "YSxiLGM=, ZCxlLGY=");
     int status = 200;
@@ -81,7 +83,7 @@ public class NettyHttpResponseMapperTest {
 
   @Test
   public void testNonCookieHeader() throws URISyntaxException, IOException {
-    Map<String, String> headers = new HashMap<>();
+    Multimap<String, String> headers = LinkedHashMultimap.create();
     headers.put("key1", "value1");
     headers.put("Not-Set-Cookie", "YSxiLGM=, ZCxlLGY=");
     int status = 200;

@@ -5,6 +5,7 @@
 
 package com.linkedin.flashback.netty.builder;
 
+import com.google.common.collect.Multimap;
 import io.netty.handler.codec.http.DefaultFullHttpRequest;
 import io.netty.handler.codec.http.HttpMethod;
 import io.netty.handler.codec.http.HttpRequest;
@@ -27,8 +28,8 @@ public class RecordedHttpMessageBuilderTest {
     nettyRequest.headers().add("key1", "value2");
     nettyRequest.headers().add("key2", "value1");
     RecordedHttpRequestBuilder recordedHttpRequestBuilder = new RecordedHttpRequestBuilder(nettyRequest);
-    Map<String, String> headers = recordedHttpRequestBuilder.getHeaders();
-    Assert.assertEquals(headers.size(), 2);
+    Multimap<String, String> headers = recordedHttpRequestBuilder.getHeaders();
+    Assert.assertEquals(headers.size(), 3);
   }
 
   @Test
@@ -39,10 +40,11 @@ public class RecordedHttpMessageBuilderTest {
     nettyRequest.headers().add("key1", "value2");
     nettyRequest.headers().add("key2", "value1");
     RecordedHttpRequestBuilder recordedHttpRequestBuilder = new RecordedHttpRequestBuilder(nettyRequest);
-    Map<String, String> headers = recordedHttpRequestBuilder.getHeaders();
-    Assert.assertEquals(headers.size(), 2);
-    Assert.assertEquals(headers.get("key1"), "value1, value2");
-    Assert.assertEquals(headers.get("key2"), "value1");
+    Multimap<String, String> headers = recordedHttpRequestBuilder.getHeaders();
+    Assert.assertEquals(headers.size(), 3);
+    Assert.assertEquals(headers.get("key1").contains("value1"), true);
+    Assert.assertEquals(headers.get("key1").contains("value2"), true);
+    Assert.assertEquals(headers.get("key2").contains("value1"), true);
   }
 
   @Test
@@ -55,9 +57,9 @@ public class RecordedHttpMessageBuilderTest {
         .add("Set-Cookie",
             "d,e,f");
     RecordedHttpRequestBuilder recordedHttpRequestBuilder = new RecordedHttpRequestBuilder(nettyRequest);
-    Map<String, String> headers = recordedHttpRequestBuilder.getHeaders();
+    Multimap<String, String> headers = recordedHttpRequestBuilder.getHeaders();
 
-    Assert.assertEquals(headers.size(), 1);
+    Assert.assertEquals(headers.size(), 2);
     Assert.assertEquals(headers.get("Set-Cookie"), "YSxiLGM=, ZCxlLGY=");
   }
 
@@ -72,7 +74,7 @@ public class RecordedHttpMessageBuilderTest {
             "d,e,f");
 
     RecordedHttpRequestBuilder recordedHttpRequestBuilder = new RecordedHttpRequestBuilder(nettyRequest);
-    Map<String, String> headers = recordedHttpRequestBuilder.getHeaders();
+    Multimap<String, String> headers = recordedHttpRequestBuilder.getHeaders();
 
     Assert.assertEquals(headers.size(), 1);
     Assert.assertNotEquals(headers.get("Not-Set-Cookie"), "YSxiLGM=, ZCxlLGY=");
