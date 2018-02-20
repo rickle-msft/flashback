@@ -35,10 +35,8 @@ public class NettyHttpResponseMapperTest {
     Assert.assertEquals(fullHttpResponse.getStatus().code(), status);
     Assert.assertEquals(fullHttpResponse.headers().get("key1"), "value1");
     List<String> headrValues = fullHttpResponse.headers().getAll("key2");
-    Assert.assertEquals(headrValues.size(), 3);
-    Assert.assertTrue(headrValues.contains("value2"));
-    Assert.assertTrue(headrValues.contains("value3"));
-    Assert.assertTrue(headrValues.contains("value4"));
+    Assert.assertEquals(headrValues.size(), 1);
+    Assert.assertTrue(headrValues.contains("value2,value3,value4"));
   }
 
   @Test
@@ -55,10 +53,8 @@ public class NettyHttpResponseMapperTest {
     Assert.assertEquals(fullHttpResponse.getStatus().code(), status);
     Assert.assertEquals(fullHttpResponse.headers().get("key1"), "value1");
     List<String> headrValues = fullHttpResponse.headers().getAll("key2");
-    Assert.assertEquals(headrValues.size(), 3);
-    Assert.assertTrue(headrValues.contains("value2"));
-    Assert.assertTrue(headrValues.contains("value3"));
-    Assert.assertTrue(headrValues.contains("value4"));
+    Assert.assertEquals(headrValues.size(), 1);
+    Assert.assertTrue(headrValues.contains("value2,value3,value4"));
     Assert.assertEquals(fullHttpResponse.content().array(), str.getBytes());
   }
 
@@ -76,9 +72,8 @@ public class NettyHttpResponseMapperTest {
     Assert.assertEquals(fullHttpResponse.getStatus().code(), status);
     Assert.assertEquals(fullHttpResponse.headers().get("key1"), "value1");
     List<String> headrValues = fullHttpResponse.headers().getAll("Set-Cookie");
-    Assert.assertEquals(headrValues.size(), 2);
-    Assert.assertTrue(headrValues.contains("a,b,c"));
-    Assert.assertTrue(headrValues.contains("d,e,f"));
+    Assert.assertEquals(headrValues.size(), 1);
+    Assert.assertTrue(headrValues.contains("YSxiLGM=, ZCxlLGY="));
   }
 
   @Test
@@ -95,9 +90,7 @@ public class NettyHttpResponseMapperTest {
     Assert.assertEquals(fullHttpResponse.getStatus().code(), status);
     Assert.assertEquals(fullHttpResponse.headers().get("key1"), "value1");
     List<String> headrValues = fullHttpResponse.headers().getAll("Not-Set-Cookie");
-    Assert.assertEquals(headrValues.size(), 2);
-
-    Assert.assertFalse(headrValues.contains("a,b,c"));
-    Assert.assertFalse(headrValues.contains("d,e,f"));
+    Assert.assertEquals(headrValues.size(), 1);
+    Assert.assertTrue(headrValues.contains("YSxiLGM=, ZCxlLGY="));
   }
 }

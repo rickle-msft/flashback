@@ -11,7 +11,6 @@ import io.netty.handler.codec.http.HttpMethod;
 import io.netty.handler.codec.http.HttpRequest;
 import io.netty.handler.codec.http.HttpVersion;
 import java.net.URISyntaxException;
-import java.util.Map;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -42,9 +41,9 @@ public class RecordedHttpMessageBuilderTest {
     RecordedHttpRequestBuilder recordedHttpRequestBuilder = new RecordedHttpRequestBuilder(nettyRequest);
     Multimap<String, String> headers = recordedHttpRequestBuilder.getHeaders();
     Assert.assertEquals(headers.size(), 3);
-    Assert.assertEquals(headers.get("key1").contains("value1"), true);
-    Assert.assertEquals(headers.get("key1").contains("value2"), true);
-    Assert.assertEquals(headers.get("key2").contains("value1"), true);
+    Assert.assertTrue(headers.get("key1").contains("value1"));
+    Assert.assertTrue(headers.get("key1").contains("value2"));
+    Assert.assertTrue(headers.get("key2").contains("value1"));
   }
 
   @Test
@@ -60,7 +59,8 @@ public class RecordedHttpMessageBuilderTest {
     Multimap<String, String> headers = recordedHttpRequestBuilder.getHeaders();
 
     Assert.assertEquals(headers.size(), 2);
-    Assert.assertEquals(headers.get("Set-Cookie"), "YSxiLGM=, ZCxlLGY=");
+    Assert.assertTrue(headers.get("Set-Cookie").contains("a,b,c"));
+    Assert.assertTrue(headers.get("Set-Cookie").contains("d,e,f"));
   }
 
   @Test
@@ -76,7 +76,8 @@ public class RecordedHttpMessageBuilderTest {
     RecordedHttpRequestBuilder recordedHttpRequestBuilder = new RecordedHttpRequestBuilder(nettyRequest);
     Multimap<String, String> headers = recordedHttpRequestBuilder.getHeaders();
 
-    Assert.assertEquals(headers.size(), 1);
-    Assert.assertNotEquals(headers.get("Not-Set-Cookie"), "YSxiLGM=, ZCxlLGY=");
+    Assert.assertEquals(headers.size(), 2);
+    Assert.assertTrue(headers.get("Not-Set-Cookie").contains("a,b,c"));
+    Assert.assertTrue(headers.get("Not-Set-Cookie").contains("d,e,f"));
   }
 }
