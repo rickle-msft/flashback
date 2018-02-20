@@ -63,11 +63,7 @@ public abstract class RecordedHttpMessageBuilder {
       return;
     }
     for (String name : httpMessage.headers().names()) {
-      for (String value : httpMessage.headers().getAll(name)) {
-        if (!_headers.containsEntry(name, value)) {
-          _headers.put(name, value);
-        }
-      }
+      _headers.putAll(name, httpMessage.headers().getAll(name));
     }
   }
 
