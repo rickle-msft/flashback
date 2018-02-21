@@ -69,26 +69,26 @@ public class MockDataGenerator {
   }
 
   static String getSerializedScene() {
-    return "{\n" + "  \"NAME\" : \"testing\",\n" + "  \"HTTPEXCHANGELIST\" : {\n" + "    \"HTTPEXCHANGE1\" : {\n"
-        + "      \"UPDATETIME\" : \"2 Oct 2015 21:04:49 GMT\",\n" + "      \"HTTPREQUEST\" : {\n"
-        + "        \"HTTPMETHOD\" : \"GET\",\n" + "        \"HTTPURI\" : \"https://www.google.com\",\n"
-        + "        \"HTTPHEADERS\" : {\n" + "          \"request-header2\" : \"value2, value3, value4\",\n"
-        + "          \"request-header1\" : \"value1\"\n" + "        },\n"
-        + "        \"STRINGHTTPBODY\" : \"Hello world request is awesome\"\n" + "      },\n" + "      \"HTTPRESPONSE\" : {\n"
-        + "        \"HTTPSTATUSCODE\" : 200,\n" + "        \"HTTPHEADERS\" : {\n"
-        + "          \"response-header2\" : \"value2, value3, value4\",\n"
-        + "          \"response-header1\" : \"value1\"\n" + "        },\n"
-        + "        \"STRINGHTTPBODY\" : \"Hello world response is awesome\"\n" + "      }\n" + "    },\n"
-        + "    \"HTTPEXCHANGE2\" : {\n" + "      \"UPDATETIME\" : \"2 Oct 2015 21:04:49 GMT\",\n"
-        + "      \"HTTPREQUEST\" : {\n" + "        \"HTTPMETHOD\" : \"GET\",\n"
-        + "        \"HTTPURI\" : \"https://www.yahoo.com\",\n" + "        \"HTTPHEADERS\" : {\n"
-        + "          \"request-header12\" : \"value12, value13, value14\",\n"
-        + "          \"request-header11\" : \"value11\"\n" + "        },\n"
-        + "        \"STRINGHTTPBODY\" : \"Hello world request is awesome\"\n" + "      },\n" + "      \"HTTPRESPONSE\" : {\n"
-        + "        \"HTTPSTATUSCODE\" : 200,\n" + "        \"HTTPHEADERS\" : {\n"
-        + "          \"response-header12\" : \"value21, value31, value41\",\n"
-        + "          \"response-header11\" : \"value11\"\n" + "        },\n"
-        + "        \"BINARYHTTPBODY\" : \"AQIDBAU=\"\n" + "      }\n" + "    }\n" + "  }\n" + "}";
+    return String.format( "{%n" + "  \"NAME\" : \"testing\",%n" + "  \"HTTPEXCHANGELIST\" : {%n" + "    \"HTTPEXCHANGE1\" : {%n"
+        + "      \"UPDATETIME\" : \"2 Oct 2015 21:04:49 GMT\",%n" + "      \"HTTPREQUEST\" : {%n"
+        + "        \"HTTPMETHOD\" : \"GET\",%n" + "        \"HTTPURI\" : \"https://www.google.com\",%n"
+        + "        \"HTTPHEADERS\" : {%n" + "          \"request-header1\" : \"value1\",%n"
+        + "          \"request-header2\" : \"value2, value3, value4\"%n" + "        },%n"
+        + "        \"STRINGHTTPBODY\" : \"Hello world request is awesome\"%n" + "      },%n" + "      \"HTTPRESPONSE\" : {%n"
+        + "        \"HTTPSTATUSCODE\" : 200,%n" + "        \"HTTPHEADERS\" : {%n"
+        + "          \"response-header1\" : \"value1\",%n"
+        + "          \"response-header2\" : \"value2, value3, value4\"%n" + "        },%n"
+        + "        \"STRINGHTTPBODY\" : \"Hello world response is awesome\"%n" + "      }%n" + "    },%n"
+        + "    \"HTTPEXCHANGE2\" : {%n" + "      \"UPDATETIME\" : \"2 Oct 2015 21:04:49 GMT\",%n"
+        + "      \"HTTPREQUEST\" : {%n" + "        \"HTTPMETHOD\" : \"GET\",%n"
+        + "        \"HTTPURI\" : \"https://www.yahoo.com\",%n" + "        \"HTTPHEADERS\" : {%n"
+        + "          \"request-header11\" : \"value11\",%n"
+        + "          \"request-header12\" : \"value12, value13, value14\"%n" + "        },%n"
+        + "        \"STRINGHTTPBODY\" : \"Hello world request is awesome\"%n" + "      },%n" + "      \"HTTPRESPONSE\" : {%n"
+        + "        \"HTTPSTATUSCODE\" : 200,%n" + "        \"HTTPHEADERS\" : {%n"
+        + "          \"response-header11\" : \"value11\",%n"
+        + "          \"response-header12\" : \"value21, value31, value41\"%n" + "        },%n"
+        + "        \"BINARYHTTPBODY\" : \"AQIDBAU=\"%n" + "      }%n" + "    }%n" + "  }%n" + "}");
   }
 
   static Scene getMockSceneWithoutHeaders()
@@ -114,17 +114,17 @@ public class MockDataGenerator {
   }
 
   static String getSerializedSceneWithoutHeaders() {
-    return "{\n" + "  \"NAME\" : \"testing\",\n" + "  \"HTTPEXCHANGELIST\" : {\n" + "    \"HTTPEXCHANGE1\" : {\n"
-        + "      \"UPDATETIME\" : \"2 Oct 2015 21:04:49 GMT\",\n" + "      \"HTTPREQUEST\" : {\n"
-        + "        \"HTTPMETHOD\" : \"GET\",\n" + "        \"HTTPURI\" : \"https://www.google.com\",\n"
-        + "        \"STRINGHTTPBODY\" : \"Hello world request is awesome\"\n" + "      },\n" + "      \"HTTPRESPONSE\" : {\n"
-        + "        \"HTTPSTATUSCODE\" : 200,\n" + "        \"STRINGHTTPBODY\" : \"Hello world response is awesome\"\n"
-        + "      }\n" + "    },\n" + "    \"HTTPEXCHANGE2\" : {\n"
-        + "      \"UPDATETIME\" : \"2 Oct 2015 21:04:49 GMT\",\n" + "      \"HTTPREQUEST\" : {\n"
-        + "        \"HTTPMETHOD\" : \"GET\",\n" + "        \"HTTPURI\" : \"https://www.yahoo.com\",\n"
-        + "        \"STRINGHTTPBODY\" : \"Hello world request is awesome\"\n" + "      },\n" + "      \"HTTPRESPONSE\" : {\n"
-        + "        \"HTTPSTATUSCODE\" : 200,\n" + "        \"BINARYHTTPBODY\" : \"AQIDBAU=\"\n" + "      }\n"
-        + "    }\n" + "  }\n" + "}";
+    return String.format("{%n" + "  \"NAME\" : \"testing\",%n" + "  \"HTTPEXCHANGELIST\" : {%n" + "    \"HTTPEXCHANGE1\" : {%n"
+        + "      \"UPDATETIME\" : \"2 Oct 2015 21:04:49 GMT\",%n" + "      \"HTTPREQUEST\" : {%n"
+        + "        \"HTTPMETHOD\" : \"GET\",%n" + "        \"HTTPURI\" : \"https://www.google.com\",%n"
+        + "        \"STRINGHTTPBODY\" : \"Hello world request is awesome\"%n" + "      },%n" + "      \"HTTPRESPONSE\" : {%n"
+        + "        \"HTTPSTATUSCODE\" : 200,%n" + "        \"STRINGHTTPBODY\" : \"Hello world response is awesome\"%n"
+        + "      }%n" + "    },%n" + "    \"HTTPEXCHANGE2\" : {%n"
+        + "      \"UPDATETIME\" : \"2 Oct 2015 21:04:49 GMT\",%n" + "      \"HTTPREQUEST\" : {%n"
+        + "        \"HTTPMETHOD\" : \"GET\",%n" + "        \"HTTPURI\" : \"https://www.yahoo.com\",%n"
+        + "        \"STRINGHTTPBODY\" : \"Hello world request is awesome\"%n" + "      },%n" + "      \"HTTPRESPONSE\" : {%n"
+        + "        \"HTTPSTATUSCODE\" : 200,%n" + "        \"BINARYHTTPBODY\" : \"AQIDBAU=\"%n" + "      }%n"
+        + "    }%n" + "  }%n" + "}");
   }
 
   static Scene getMockSceneWithoutBody()
@@ -163,22 +163,22 @@ public class MockDataGenerator {
   }
 
   static String getSerializedSceneWithoutBody() {
-    return "{\n" + "  \"NAME\" : \"testing\",\n" + "  \"HTTPEXCHANGELIST\" : {\n" + "    \"HTTPEXCHANGE1\" : {\n"
-        + "      \"UPDATETIME\" : \"2 Oct 2015 21:04:49 GMT\",\n" + "      \"HTTPREQUEST\" : {\n"
-        + "        \"HTTPMETHOD\" : \"GET\",\n" + "        \"HTTPURI\" : \"https://www.google.com\",\n"
-        + "        \"HTTPHEADERS\" : {\n" + "          \"request-header2\" : \"value2, value3, value4\",\n"
-        + "          \"request-header1\" : \"value1\"\n" + "        }\n" + "      },\n" + "      \"HTTPRESPONSE\" : {\n"
-        + "        \"HTTPSTATUSCODE\" : 200,\n" + "        \"HTTPHEADERS\" : {\n"
-        + "          \"response-header2\" : \"value2, value3, value4\",\n"
-        + "          \"response-header1\" : \"value1\"\n" + "        }\n" + "      }\n" + "    },\n"
-        + "    \"HTTPEXCHANGE2\" : {\n" + "      \"UPDATETIME\" : \"2 Oct 2015 21:04:49 GMT\",\n"
-        + "      \"HTTPREQUEST\" : {\n" + "        \"HTTPMETHOD\" : \"GET\",\n"
-        + "        \"HTTPURI\" : \"https://www.yahoo.com\",\n" + "        \"HTTPHEADERS\" : {\n"
-        + "          \"request-header12\" : \"value12, value13, value14\",\n"
-        + "          \"request-header11\" : \"value11\"\n" + "        }\n" + "      },\n"
-        + "      \"HTTPRESPONSE\" : {\n" + "        \"HTTPSTATUSCODE\" : 200,\n" + "        \"HTTPHEADERS\" : {\n"
-        + "          \"response-header12\" : \"value21, value31, value41\",\n"
-        + "          \"response-header11\" : \"value11\"\n" + "        }\n" + "      }\n" + "    }\n" + "  }\n" + "}";
+    return String.format("{%n" + "  \"NAME\" : \"testing\",%n" + "  \"HTTPEXCHANGELIST\" : {%n" + "    \"HTTPEXCHANGE1\" : {%n"
+        + "      \"UPDATETIME\" : \"2 Oct 2015 21:04:49 GMT\",%n" + "      \"HTTPREQUEST\" : {%n"
+        + "        \"HTTPMETHOD\" : \"GET\",%n" + "        \"HTTPURI\" : \"https://www.google.com\",%n"
+        + "        \"HTTPHEADERS\" : {%n" + "          \"request-header1\" : \"value1\",%n"
+        + "          \"request-header2\" : \"value2, value3, value4\"%n" + "        }%n" + "      },%n" + "      \"HTTPRESPONSE\" : {%n"
+        + "        \"HTTPSTATUSCODE\" : 200,%n" + "        \"HTTPHEADERS\" : {%n"
+        + "          \"response-header1\" : \"value1\",%n"
+        + "          \"response-header2\" : \"value2, value3, value4\"%n" + "        }%n" + "      }%n" + "    },%n"
+        + "    \"HTTPEXCHANGE2\" : {%n" + "      \"UPDATETIME\" : \"2 Oct 2015 21:04:49 GMT\",%n"
+        + "      \"HTTPREQUEST\" : {%n" + "        \"HTTPMETHOD\" : \"GET\",%n"
+        + "        \"HTTPURI\" : \"https://www.yahoo.com\",%n" + "        \"HTTPHEADERS\" : {%n"
+        + "          \"request-header11\" : \"value11\",%n"
+        + "          \"request-header12\" : \"value12, value13, value14\"%n" + "        }%n" + "      },%n"
+        + "      \"HTTPRESPONSE\" : {%n" + "        \"HTTPSTATUSCODE\" : 200,%n" + "        \"HTTPHEADERS\" : {%n"
+        + "          \"response-header11\" : \"value11\",%n"
+        + "          \"response-header12\" : \"value21, value31, value41\"%n" + "        }%n" + "      }%n" + "    }%n" + "  }%n" + "}");
   }
 
   static Scene getMockSceneWithoutBodyAndHeader()
@@ -203,13 +203,13 @@ public class MockDataGenerator {
   }
 
   static String getSerializedSceneWithoutBodyAndHeader() {
-    return "{\n" + "  \"NAME\" : \"testing\",\n" + "  \"HTTPEXCHANGELIST\" : {\n" + "    \"HTTPEXCHANGE1\" : {\n"
-        + "      \"UPDATETIME\" : \"2 Oct 2015 21:04:49 GMT\",\n" + "      \"HTTPREQUEST\" : {\n"
-        + "        \"HTTPMETHOD\" : \"GET\",\n" + "        \"HTTPURI\" : \"https://www.google.com\"\n" + "      },\n"
-        + "      \"HTTPRESPONSE\" : {\n" + "        \"HTTPSTATUSCODE\" : 200\n" + "      }\n" + "    },\n"
-        + "    \"HTTPEXCHANGE2\" : {\n" + "      \"UPDATETIME\" : \"2 Oct 2015 21:04:49 GMT\",\n"
-        + "      \"HTTPREQUEST\" : {\n" + "        \"HTTPMETHOD\" : \"GET\",\n"
-        + "        \"HTTPURI\" : \"https://www.yahoo.com\"\n" + "      },\n" + "      \"HTTPRESPONSE\" : {\n"
-        + "        \"HTTPSTATUSCODE\" : 200\n" + "      }\n" + "    }\n" + "  }\n" + "}";
+    return String.format("{%n" + "  \"NAME\" : \"testing\",%n" + "  \"HTTPEXCHANGELIST\" : {%n" + "    \"HTTPEXCHANGE1\" : {%n"
+        + "      \"UPDATETIME\" : \"2 Oct 2015 21:04:49 GMT\",%n" + "      \"HTTPREQUEST\" : {%n"
+        + "        \"HTTPMETHOD\" : \"GET\",%n" + "        \"HTTPURI\" : \"https://www.google.com\"%n" + "      },%n"
+        + "      \"HTTPRESPONSE\" : {%n" + "        \"HTTPSTATUSCODE\" : 200%n" + "      }%n" + "    },%n"
+        + "    \"HTTPEXCHANGE2\" : {%n" + "      \"UPDATETIME\" : \"2 Oct 2015 21:04:49 GMT\",%n"
+        + "      \"HTTPREQUEST\" : {%n" + "        \"HTTPMETHOD\" : \"GET\",%n"
+        + "        \"HTTPURI\" : \"https://www.yahoo.com\"%n" + "      },%n" + "      \"HTTPRESPONSE\" : {%n"
+        + "        \"HTTPSTATUSCODE\" : 200%n" + "      }%n" + "    }%n" + "  }%n" + "}");
   }
 }
