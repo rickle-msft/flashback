@@ -20,6 +20,7 @@ import io.netty.handler.codec.http.HttpContent;
 import io.netty.handler.codec.http.HttpMessage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Iterator;
 
 
 /**
@@ -80,11 +81,11 @@ public abstract class RecordedHttpMessageBuilder {
    * */
   protected String getContentType() {
     // Content_Type cannot have multiple, commas-separated values, so this is safe.
-    String header = _headers.get(HttpHeaders.CONTENT_TYPE).iterator().next();
-    if (Strings.isNullOrEmpty(header)) {
+    Iterator<String> header = _headers.get(HttpHeaders.CONTENT_TYPE).iterator();
+    if (!header.hasNext()) {
       return DEFAULT_CONTENT_TYPE;
     } else {
-      return MediaType.parse(header).withoutParameters().toString();
+      return MediaType.parse(header.next()).withoutParameters().toString();
     }
   }
 
@@ -94,11 +95,11 @@ public abstract class RecordedHttpMessageBuilder {
    * */
   protected String getContentEncoding() {
     // Content_Encoding cannot have multiple, commas-separated values, so this is safe.
-    String header = _headers.get(HttpHeaders.CONTENT_ENCODING).iterator().next();
-    if (Strings.isNullOrEmpty(header)) {
+    Iterator<String> header = _headers.get(HttpHeaders.CONTENT_ENCODING).iterator();
+    if (!header.hasNext()) {
       return DEFAULT_CONTENT_ENCODING;
     } else {
-      return header;
+      return header.next();
     }
   }
 
@@ -108,11 +109,11 @@ public abstract class RecordedHttpMessageBuilder {
    * */
   protected String getCharset() {
     // Content_Type cannot have multiple, commas-separated values, so this is safe.
-    String header = _headers.get(HttpHeaders.CONTENT_TYPE).iterator().next();
-    if (Strings.isNullOrEmpty(header)) {
+    Iterator<String> header = _headers.get(HttpHeaders.CONTENT_TYPE).iterator();
+    if (!header.hasNext()) {
       return DEFAULT_CHARSET;
     } else {
-      return MediaType.parse(header).charset().or(Charsets.UTF_8).toString();
+      return MediaType.parse(header.next()).charset().or(Charsets.UTF_8).toString();
     }
   }
 
